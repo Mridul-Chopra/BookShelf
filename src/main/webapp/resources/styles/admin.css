@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Acme|EB+Garamond&display=swap');
+
+body
+{
+	background-color:#f5f6fa;
+
+}
+
+.heading
+{
+	font-family: 'EB Garamond', serif;
+	font-size:8vh;
+	border-bottom:1px dashed red;
+	display:flex;
+	align-items : center;
+	justify-content: center;
+}
+
+.row-2 , .row-3{
+	margin-top:4vh;
+}
+
+.option
+{
+	border:none;
+	background-color:transparent;
+	font-family: 'Acme', sans-serif;
+	font-size:1.3em;
+}
+
+.option:active {
+  border-bottom:3px solid red;
+}
+
