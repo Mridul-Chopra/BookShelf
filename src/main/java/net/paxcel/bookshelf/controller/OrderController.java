@@ -69,7 +69,7 @@ public class OrderController {
 	}
 	 
 	@RequestMapping(value = "/order/{email}/{page}", method = RequestMethod.POST)
-	public String filter(
+	public @ResponseBody List<BooksModel> filter(
 			@PathVariable("email") String email,  // getting email
 			@PathVariable("page") int page,		// getting page number
 			@RequestParam("author") String author, // getting authors from url parameters for filters
@@ -90,39 +90,13 @@ public class OrderController {
 		}
 		
 		
-		  List<String> authorsList = authors.getAuthors();   // getting all authors
-		  List<String> genresList =genres.getGenres(); 	// getting all genres
 		  List<BooksModel> booksList = books.getBooks(author,genre); // getting required books cooresponding to filters
 		  
-		  if(authorsList==null | genresList==null | booksList == null)
+		  if(booksList==null)
 		  {
-		  model.addAttribute("message","Some error occoured.");  // display message if data not available
-		  } 
-		  else 
-		  {
-			/*
-			 *	Setting to all if authors , genres is null 
-			 *   
-			 */
-				if(author==null)
-				{
-					author="All";
-				}
-				if(genre==null)
-				{
-					genre="All";
-				}
-				
-			/*
-				Adding data to model
-			*/	
-			  model.addAttribute("authorsList", authorsList);
-			  model.addAttribute("genresList", genresList); 
-			  model.addAttribute("booksList",booksList); 
-			  model.addAttribute("authorName",author); 
-			  model.addAttribute("genreType",genre); 
-		  } 
-		  return "order"; 
+			  model.addAttribute("message","Some error occoured."); // display message if data not available due to error
+		  }
+		  return booksList; 
 	}
 	
 }

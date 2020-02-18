@@ -16,9 +16,12 @@
 		<intercept-url pattern="/add"  access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/purchases"  access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/orders"  access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user"  access="hasRole('ROLE_USER')" />
+		
+		    
 		
 		<!-- access denied page -->
-		<access-denied-handler error-page="/user" />
+		<access-denied-handler error-page="/403" />
 		
 		<form-login 
 		    login-page="/login" 
@@ -27,9 +30,11 @@
 			username-parameter="email"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout"  />
-		<!-- enable csrf protection -->
-		<csrf/>
+		
+		<csrf disabled="true" />
 	</http>
+	
+
  
     <!-- spring authentication configuration via database -->
     <authentication-manager>

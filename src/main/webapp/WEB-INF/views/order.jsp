@@ -20,14 +20,14 @@
 </head>
 <body>
 
-<p name="email">${email}</p>
-<p name="page">${page}</p>
+<p name="email" class="hide">${email}</p>
+<p name="page" class="hide">${page}</p>
 
 <div class ="container-fluid">
 	<div class="row row-1">
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 "></div>
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 heading">Place an Order</div>
-		<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 cart-col"><i class="material-icons cart-icon" onclick="showCart()">local_grocery_store</i>
+		<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 cart-col"><i class="material-icons cart-icon">local_grocery_store</i>
 </div>
 	</div>
 	<div class="row row-2">
@@ -70,9 +70,15 @@
 			
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-					<button id="apply" class="btn btn-secondary filter">
+					<button id="apply" class="btn btn-secondary filter" myContextPath="${pageContext.request.contextPath}">
 						Apply Filter
 					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 message">
+					${message}
 				</div>
 			</div>
 		</div>
@@ -94,7 +100,7 @@
 				
 				<tbody>
 					<c:forEach var="book" items="${booksList}">
-						<tr>
+						<tr class="books-row">
 							<td>${book.bookName}</td>
 							<td>
 								<c:forEach var="author" items="${book.authors}">
@@ -137,9 +143,17 @@
 			</tbody>
 	</table>
 	<div class="row">
+		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
+		</div>
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 ">
+			<p class = "text-primary order-message"></p>
+		</div>
+	</div>
+	
+	<div class="row">
 		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 "></div>
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
-			<button class="btn btn-success place-order">Place Order</button>
+			<button class="btn btn-success place-order" myContextPath="${pageContext.request.contextPath}">Place Order</button>
 		</div>
 	</div>
 </div>

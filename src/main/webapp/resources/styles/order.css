@@ -127,4 +127,16 @@ td ul {
   	right:1%;
   	position:absolute;
   }
+  .message
+  {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	color:red;
+  	font-size:1.3em;
+  }
   
+  .hide
+  {
+  	display:none
+  }

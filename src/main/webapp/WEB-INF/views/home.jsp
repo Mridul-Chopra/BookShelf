@@ -29,35 +29,66 @@
 		</div>
 	</div>
 	<div class="row row-2">
-		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
 			<div class="row x">
 				<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 login">
-					<a href = "admin">Login</a>
+					<a href = "user">Login</a>
 				</div>
 				
 				<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				</div>
 				
-				<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 sign-up">
-					<a href = "signup">Sign UP</a>
+				
+			</div>
+		</div>
+	</div>
+		<div class="row row-2">
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+			<div class="row x">
+				<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 login">
+					<a href = "signup">Sign Up</a>
 				</div>
+				
+				<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+		<div class="row row-2">
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+			<div class="row x">
+				<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 login">
+					<a href = "admin">Admin Login</a>
+				</div>
+				
+				<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
 	
-	<div class="row row-3">
-		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+		<div class="row row-2">
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
 			<div class="row x">
 				<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 login">
-					<a href = "contents">View Documentation</a>
+					<a href = "contents">Documentation</a>
 				</div>
-			
+				
+				<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+				</div>
+				
+				
+			</div>
 		</div>
 	</div>
-	
-</div>
 
 
 </body>

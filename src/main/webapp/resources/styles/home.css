@@ -29,9 +29,9 @@
 	font-family: 'Galada', cursive;
 }
 
-.login , .sign-up
+.login 
 {
-	height:20vh;	
+	height:5vh;	
 	border:2px solid red;
 	display : flex;
   	align-items : center;

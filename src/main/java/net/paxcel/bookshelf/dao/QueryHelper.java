@@ -89,7 +89,7 @@ public class QueryHelper {
 		catch(Exception e)
 		{
 			log.error(this.getClass()+"--->"+e);
-			status = 0; // successful status
+			status = 0; // unsuccessful status
 		}
 		finally
 		{
