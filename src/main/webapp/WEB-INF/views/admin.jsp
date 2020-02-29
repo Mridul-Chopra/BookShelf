@@ -15,6 +15,17 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">BookShelf</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value="/logout" />">Logout</a>
+    </li>
+  </ul>
+</nav>
 	<div class="container-fluid">
 		<div class="row row-1">
 				<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 "></div>

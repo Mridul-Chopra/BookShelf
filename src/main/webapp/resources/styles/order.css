@@ -14,45 +14,29 @@ body
 	justify-content: center;
 }
 
-.row{
+.row
+{
 	margin-top:4vh;
 }
-  .filter
+  .filter , #myInput
   {
   	width:80%;
   	margin-left:1em;
   }
   
-  select
+ .dropdown-toggle
   {
   	width:70%;
   	height:3em;
   	text-align-last:center;
-  	border:1px solid #353b48;
- 	background-color:#00a8ff;
- 	color:white;
   }
   
-  select:focus
-  {
-  	outline-width: none;
-    outline-style: none;
-    outline-color: none;
-  }
-  
-  
-  option
-  {
-  	background-color:#f5f6fa;
-  	color:black;
-  	font-family: 'Catamaran', sans-serif;
-  	font-size:1em;
-  }
   
 .cart-icon
 {
 	font-size:3.5em;
-	color:black
+	color:black;
+	cursor: pointer;
 }
 
 .cart-col
@@ -76,6 +60,7 @@ body
 	align-items : center;
 	justify-content: center;
 	border:1px solid red;
+	cursor: pointer;
  }
   
   
@@ -94,6 +79,7 @@ td ul {
 {
 	font-size:2em;
 	color:red;
+	cursor: pointer;
 }  
   
   
@@ -126,6 +112,7 @@ td ul {
   	top:2%;
   	right:1%;
   	position:absolute;
+  	cursor: pointer;
   }
   .message
   {
@@ -140,3 +127,48 @@ td ul {
   {
   	display:none
   }
+  
+  .item-nos
+  {
+  	background-color:red;
+  	color:white;
+  	font-size:1.3em;
+  	font-weight:bold;
+  	border-radius:100px;
+  	width:1.5em;
+  	height:1.5em;
+  	text-align:center;
+  	z-index:2;
+  	position:absolute;
+  	top:0px;
+  	right:0.3em;
+  	display:none;
+  }
+  
+  button
+  {
+  	 overflow: auto;
+  }
+  button::-webkit-scrollbar {
+    height:0.5em;
+    width:0.5em;
+    background-color:none;
+}
+button::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:red; 
+    
+}
+
+.dropdown-menu
+{
+	position:absolute;
+}
+​
+
+.filter-menu
+{
+	border:1px solid red;
+}
+
+

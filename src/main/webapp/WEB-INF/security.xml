@@ -16,7 +16,7 @@
 		<intercept-url pattern="/add"  access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/purchases"  access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/orders"  access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/user"  access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/order/**/**"  access="hasRole('ROLE_USER')" />
 		
 		    
 		
@@ -25,7 +25,7 @@
 		
 		<form-login 
 		    login-page="/login" 
-		    default-target-url="/" 
+		    default-target-url="/user" 
 			authentication-failure-url="/login?message" 
 			username-parameter="email"
 			password-parameter="password" />
@@ -41,9 +41,9 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                 users-by-username-query=
-		    "select username,password, enabled from users where username=?"
+		    "select username,password, enabled from USERS where username=?"
 		  authorities-by-username-query=
-		    "select username, role from user_roles where username =?  "  />
+		    "select u.username, ur.role from USERS u ,USER_ROLES ur where u.user_id = ur.user_id and u.username = ?  "  />
         </authentication-provider>
     </authentication-manager>
  
@@ -51,10 +51,23 @@
     <beans:bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName"
-            value="com.mysql.cj.jdbc.Driver" />
+            value="com.mysql.jdbc.Driver" />
         <beans:property name="url"
-            value="jdbc:mysql://remotemysql.com:3306/YTu769SmOE" />
-        <beans:property name="username" value="YTu769SmOE" />
-        <beans:property name="password" value="QFuPBNK50g" />
+            value="jdbc:mysql://localhost:3306/BOOKSHELF" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="123" />
     </beans:bean>
-</beans:beans>
+    
+<!--     <beans:bean id="loginCheck"
+  class="net.paxcel.bookshelf.service.CheckLoginServiceImpl"/>
+    
+    
+ <authentication-manager>
+    <authentication-provider
+      user-service-ref="loginCheck" >
+    </authentication-provider>
+</authentication-manager> -->
+    
+</beans:beans> 
+
+

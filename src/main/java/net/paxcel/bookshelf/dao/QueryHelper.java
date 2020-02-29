@@ -86,6 +86,11 @@ public class QueryHelper {
 			log.error(this.getClass()+"--->"+ex);
 			status = -1; // duplicte record status
 		}
+		catch(com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException ex)
+		{
+			log.error(this.getClass()+"--->"+ex);
+			status = -1; // duplicte record status
+		}
 		catch(Exception e)
 		{
 			log.error(this.getClass()+"--->"+e);
@@ -132,8 +137,9 @@ public class QueryHelper {
 	
 			savepoints.clear(); // clearing all savepoints for fresh transaction
 			try 
-			{
+			{	cn=pool.get();
 				cn.setAutoCommit(false); // custom commit enabled
+				pool.returnBack(cn);
 			} 
 			catch (SQLException e) 
 			{

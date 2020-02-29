@@ -12,17 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import net.paxcel.bookshelf.dbUtils.Pool;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
-
-//@EnableWebMvc
 @Configuration
- //@Import({ SecurityConfig.class }) 
 public class AppConfig {
 
 	@Autowired
@@ -71,11 +61,12 @@ public class AppConfig {
 			String username = connectionProp.getProperty("DB.username");
 			String password = connectionProp.getProperty("DB.password");
 
+			
 			pool.setDriver_(driver);
 			pool.setUrl_(url);
 			pool.setPassword_(password);
 			pool.setUsername_(username);
-
+			
 			pool.establishPool();
 			System.out.println("Pool Creation Done");
 			return pool;
@@ -88,14 +79,4 @@ public class AppConfig {
 		}
 		return null;
 	}
-
-	/*
-	 * @Bean public InternalResourceViewResolver viewResolver() {
-	 * InternalResourceViewResolver viewResolver = new
-	 * InternalResourceViewResolver(); viewResolver.setViewClass(JstlView.class);
-	 * viewResolver.setPrefix("/WEB-INF/pages/"); viewResolver.setSuffix(".jsp");
-	 * return viewResolver; }
-	 * 
-	 */
-
 }

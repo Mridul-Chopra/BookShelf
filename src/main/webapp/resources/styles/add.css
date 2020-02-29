@@ -2,3 +2,22 @@
 {
 	font-size:3em;
 }
+
+.plus
+{
+	position:relative;
+	float:right;
+}
+
+.min
+{
+	position:relative;
+	float:right;
+	margin-top:-33px;
+}
+
+#author
+{
+	width:80%;
+	
+}

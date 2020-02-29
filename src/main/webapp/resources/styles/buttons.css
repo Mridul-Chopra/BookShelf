@@ -1,0 +1,78 @@
+/*
+
+---------Glow gradient button----------
+            **Start**
+
+*/
+
+.glow-gradient-button
+{
+  text-align:center;
+  color:#fff;
+  text-transform: uppercase;
+  text-decoration:none;
+  font-family:sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg , #03a9f4 , #f441a5 , #ffeb3b , #03a9f4);
+  background-size: 400%;
+  border-radius: 30px;
+  width:10em;
+  height:3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.glow-gradient-button:hover
+{
+  animation:glow-gradient-button-animate 8s linear infinite;
+  text-decoration: none;
+  color: #fff;
+
+}
+
+@keyframes glow-gradient-button-animate
+{
+  0%
+  {
+    background-position: 0%;
+  }
+  100%
+  {
+    background-position: 400%;
+  }
+}
+.glow-gradient-button::before
+{
+  content:'';
+  position: absolute;
+  top:-5px;
+  left:-5px;
+  right:-5px;
+  bottom:-5px;
+  z-index: -1;
+  background: linear-gradient(90deg , #03a9f4 , #f441a5 , #ffeb3b , #03a9f4);
+  background-size: 400%;
+  border-radius: 40px;
+  filter: blur(20px);
+  opacity: 0;
+  transition:0.5s;
+  width:12em;
+  height:4em;
+}
+
+.glow-gradient-button:hover::before
+{
+  filter: blur(20px);
+  opacity: 1;
+  animation:glow-gradient-button-animate 8s linear infinite;
+
+}
+
+/*
+
+---------Glow gradient button----------
+              **End**
+
+*/

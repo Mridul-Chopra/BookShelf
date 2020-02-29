@@ -15,8 +15,15 @@ public class BooksModel {
 	private String genre;
 	private int stock;
 	private float price;
-	List<String> authors = new ArrayList<String>();
+	private List<String> authors = new ArrayList<String>();
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/*
 		Getters and Setters
 	*/

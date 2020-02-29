@@ -1,5 +1,7 @@
 package net.paxcel.bookshelf.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,26 +21,19 @@ public class PlaceOrderController {
 	@Autowired OrderService order_;
 
 	@RequestMapping(value="/orderDetails" , method=RequestMethod.POST)
-	public @ResponseBody String my(@RequestParam("email") String email , @RequestBody String order)
+	public @ResponseBody String my( @RequestBody String order , HttpServletRequest request)
 	{
+		int id = (Integer)request.getSession().getAttribute("id");
 		
-		int status = order_.addOrder(order , email);
-			if(status==1)
+		boolean status = order_.addOrder(order , id);
+			if(status)
 			{
 				return "Order placed successfully.."; 
 			}
 			
-			else if(status==0)
+			else 
 			{
 				return "Some error occoured."; 
-			}
-			else if(status==-1)
-			{
-				return "Looks like you are exploiting a vulnerability. We won't let you do it.....HAHAHA";
-			}
-			else
-			{
-				return "Something unexpected Occoured";
 			}
 		
 	}

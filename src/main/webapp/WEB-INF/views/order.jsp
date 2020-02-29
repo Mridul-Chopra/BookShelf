@@ -13,69 +13,103 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../resources/styles/order.css">
-  <script src="../../resources/scripts/order.js"></script>
+  <script src="../../resources/scripts/order-events.js"></script>
+  <script src="../../resources/scripts/order-ajax.js"></script>
+  <script src="../../resources/scripts/order-validations.js"></script>
+  <script src="../../resources/scripts/order-vars.js"></script>
 
 
 <title>Insert title here</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">BookShelf</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value="/logout" />">Logout</a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
 
 <p name="email" class="hide">${email}</p>
 <p name="page" class="hide">${page}</p>
+
+
+
+
+
+
+
+
+
+
+
 
 <div class ="container-fluid">
 	<div class="row row-1">
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 "></div>
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 heading">Place an Order</div>
 		<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 cart-col"><i class="material-icons cart-icon">local_grocery_store</i>
+		<div class="item-nos">0</div>
 </div>
 	</div>
 	<div class="row row-2">
 		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 "></div>
 		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 ">
-			<div class="row">
-				<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
-						<select name="author">
-							<option value="All">All</option>
-							<c:forEach var="author" items="${authorsList}">
-								<c:choose>
-									<c:when test="${author==authorName}">
-										<option selected>${author}</option>
-									</c:when>
+				<div class="row">
+					<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+						<div class="dropdown">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Authors</button>
+							<div class="dropdown-menu">
+								<div class="dropdown-item">
+									<input type="checkbox" id="all" value="all" class="selected-author all-authors" checked="checked"> 
+									<label for="all"> All</label>
+								</div>
+	
+								<c:forEach var="author" items="${authorsList}">
+									<div class="dropdown-item">
+										<input type="checkbox" id="${author}" value="${author}" class="selected-author other-authors"> 
+										<label for="${author}">${author}</label>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
 
-									<c:otherwise>
-										<option>${author}</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</select>
+					<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+						<div class="dropdown">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genres</button>
+							<div class="dropdown-menu">
+								<div class="dropdown-item">
+									<input type="checkbox" id="all" value="all" class="selected-genre all-genres" checked="checked"> 
+									<label for="all">All</label>
+								</div>
+	
+								<c:forEach var="genre" items="${genresList}">
+									<div class="dropdown-item">
+										<input type="checkbox" id="${genre}" value="${genre}" class="selected-genre other-genres"> 
+										<label for="${genre}">${genre}</label>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
 				</div>
-				
-				<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
-						<select name="genre">
-							<option value="All">All</option>
-							<c:forEach var="genre" items="${genresList}">
-								<c:choose>
-									<c:when test="${genre==genreType}">
-										<option selected>${genre}</option>
-									</c:when>
-									<c:otherwise>
-										<option>${genre}</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</select>
-				</div>	
-			</div>	
-			
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-					<button id="apply" class="btn btn-secondary filter" myContextPath="${pageContext.request.contextPath}">
-						Apply Filter
-					</button>
+
+
+				<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+					<input class="form-control" id="myInput" type="text" placeholder="Search something in table ..">
 				</div>
 			</div>
-
+			
 			<div class="row">
 				<div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 message">
 					${message}
@@ -99,28 +133,34 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach var="book" items="${booksList}">
-						<tr class="books-row">
-							<td>${book.bookName}</td>
-							<td>
-								<c:forEach var="author" items="${book.authors}">
-										<ul>
-											<li>${author}</li>
-										</ul>
-								</c:forEach>
-							</td>
-							<td>${book.genre}</td>
-							<td>Rs . ${book.price}</td>
-							<td class="cart-button">
-								<button class="add-to-cart">Add to 'Cart'
-								</button>
-							</td>
-						</tr>
-					</c:forEach>
+					
+					
 				</tbody>
 				
 			</table>
 		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 "></div>
+		<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item" id="previous"><a class="page-link" href="#"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+						</a></li>
+						<li class="page-item page-number" id="p1"><a class="page-link" href="#">1</a></li>
+						<li class="page-item page-number" id="p2"><a class="page-link" href="#">2</a></li>
+						<li class="page-item page-number" id="p3"><a class="page-link" href="#">3</a></li>
+						<li class="page-item" id="next"><a class="page-link" href="#"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+								class="sr-only">Next</span>
+						</a></li>
+					</ul>
+				</nav>
+			</div>
+		<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
 	</div>
 	
 </div>

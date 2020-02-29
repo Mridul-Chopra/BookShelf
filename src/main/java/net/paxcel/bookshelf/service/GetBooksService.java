@@ -1,14 +1,13 @@
 package net.paxcel.bookshelf.service;
 
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import net.paxcel.bookshelf.model.BooksModel;
+import net.paxcel.bookshelf.model.BooksResponse;
 
 @Service
 public interface GetBooksService {
 	
-	public List<BooksModel> getBooks(String author , String genre) ; // get books with filters
+	public BooksResponse getBooks(String data ) ; // get books with filters
 
 }

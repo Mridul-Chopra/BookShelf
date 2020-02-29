@@ -25,7 +25,7 @@ public class GetAuthorsDAOImpl implements GetAuthorsDAO{
 		try 
 		{
 		ResultSet result;
-		String statement = "SELECT DISTINCT AUTHOR_NAME FROM BOOKS_AUTHORS"; // query to get data
+		String statement = "SELECT * from AUTHORS"; // query to get data
 		sql.setQuery= (Void)->{return Void;}; // setting query
 		result = sql.getData(statement);	// getting data from user
 		

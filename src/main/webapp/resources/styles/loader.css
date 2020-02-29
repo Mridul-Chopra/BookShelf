@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
+
+.neon-loader
+{
+	margin:0;
+	padding: 0;
+	color:transparent;
+	font-size: 7em;
+	font-family:'Bad Script',cursive;
+}
+
+.neon-loader span{
+	animation: neon-loader-animate 1s linear infinite;
+}
+.neon-loader span:nth-child(9n+1)
+{
+	animation-delay: 0.33s;
+}
+.neon-loader span:nth-child(9n+2)
+{
+	animation-delay: 1.44s;
+}
+.neon-loader span:nth-child(9n+3)
+{
+	animation-delay: 1.25s;
+}
+.neon-loader span:nth-child(9n+4)
+{
+	animation-delay: 2.34s;
+}
+.neon-loader span:nth-child(9n+5)
+{
+	animation-delay: 0.5s;
+}
+.neon-loader span:nth-child(9n+6)
+{
+	animation-delay: 3.0s;
+}
+.neon-loader span:nth-child(9n+7)
+{
+	animation-delay: 3.0s;
+}
+.neon-loader span:nth-child(9n+8)
+{
+	animation-delay: 3.20s;
+}
+@keyframes neon-loader-animate{
+	0%,50%{
+		color:#fff;
+		filter:blur(2px);
+		text-shadow: 0 0 10px #00b3ff,
+					 0 0 20px #00b3ff,
+					 0 0 40px #00b3ff,
+					 0 0 80px #00b3ff,
+					 0 0 120px #00b3ff,
+					 0 0 200px #00b3ff,
+					 0 0 300px #00b3ff,
+					 0 0 400px #00b3ff;
+	}
+	51%,100%{
+		color:#fff;
+		filter:blur(2px);
+		text-shadow: 0 0 10px #00b3ff,
+					 0 0 20px #00b3ff,
+					 none,
+					 0 0 80px #00b3ff,
+					 0 0 120px #00b3ff,
+					 0 0 200px #00b3ff,
+					 0 0 300px #00b3ff,
+					 0 0 400px #00b3ff;
+	}
+}

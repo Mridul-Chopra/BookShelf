@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface OrderDAO {
 
-	public int placeOrder(Map<String,Integer> books , String email);
+	public boolean placeOrder(Map<Integer,Integer> books , int id);
 }
 

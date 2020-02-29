@@ -1,46 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Galada|Noto+Sans+TC&display=swap');
-
-
-.container-fluid
+body
 {
-	background-color:#f5f6fa;
-	height:100%;
+  margin:0;
+  padding:0;
+  background-color: #08302F
 }
 
-.row-2{
-	margin-top:4vh;
-}
-
-
-
-.wrapper{
-	border-bottom : 1px solid red;
-}
-
-.heading , .brand-name{
-
-	text-align:center;
-	font-size:3vw;
-	font-family: 'Noto Sans TC', sans-serif;
-	
-}
-
-.brand-name{
-	font-family: 'Galada', cursive;
-}
-
-.login 
+.row-1
 {
-	height:5vh;	
-	border:2px solid red;
-	display : flex;
-  	align-items : center;
-  	justify-content: center;
+  margin-top:2.5em;
+  border-bottom: 1px solid #155179;
 }
 
-a{
-	font-family: 'Dancing Script', cursive;
-	color:#eb4d4b;
-	font-size:1.5vw;
-	
+.row-2 , .row-3 ,.row-4
+{
+  margin-top:5em;
 }

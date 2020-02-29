@@ -17,15 +17,15 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired Logger log;
 	
 	@Override
-	public int addOrder(String books , String email) {
+	public boolean addOrder(String books , int id) {
 		JSONObject data = new JSONObject(books);
-		HashMap<String, Integer> booksmap = new HashMap<>();
+		HashMap<Integer , Integer> booksmap = new HashMap<>();
 		Iterator<String> iter =data.keys();
 		while (iter.hasNext()) {
 		   String key = iter.next();
-		   booksmap.put(key, Integer.parseInt((String) data.get(key)));
+		   booksmap.put(Integer.parseInt((String) key), Integer.parseInt((String) data.get(key)));
 		}
-		return order.placeOrder(booksmap , email);
+		return order.placeOrder(booksmap , id);
 	}
 
 }

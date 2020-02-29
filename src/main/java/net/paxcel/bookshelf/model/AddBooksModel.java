@@ -1,11 +1,19 @@
 
 package net.paxcel.bookshelf.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
+
+import com.sun.istack.internal.NotNull;
 
 @Component
 /*
@@ -13,12 +21,12 @@ import org.springframework.stereotype.Component;
 */
 public class AddBooksModel {
 
-	@NotEmpty private String bookName;
-	@NotEmpty private String genre;
-	@Min(value=1)private float price;
-	@NotEmpty private List<String> authors;
+	@Size(min=1,max=50)private String bookName;
+	@Size(min=1,max=30) private String genre;
+	@NotNull @Min(value=1) private Float price;
+	@Size(min=1,max=30) private List<String> authors;
 	@NotEmpty private String date;
-	@Min(value=1)  private int amount;
+	@NotNull @Min(value=1)private Integer amount;
 	
 	
 	/*
@@ -28,12 +36,12 @@ public class AddBooksModel {
 		return date;
 	}
 	public void setDate(String date) {
-		this.date = date;
+		this.date = date;    
 	}
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 	public List<String> getAuthor() {
@@ -55,10 +63,10 @@ public class AddBooksModel {
 		this.genre = genre;
 	}
 
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 	

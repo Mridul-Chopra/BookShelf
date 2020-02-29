@@ -80,14 +80,15 @@ Logger log;
 			Class.forName(driver_);		 // loading the DriverManager
 			for(int i =1 ; i<=minLimit ;i++)
 			{
+				
 				Connection conn = DriverManager.getConnection(url_,username_,password_); // establishing connection 
 				pool.add(conn);		// adding connection  to queue
 			}
 		}
 		catch(Exception e)
 		{
-			log.error(e);							// logging the error
-			System.out.println("Fatal Error. Exiting");     // Reporting to user
+			System.out.println(this.getClass()+"--->"+e);							// logging the error
+			System.out.println("Fatal Error in pool. Exiting");     // Reporting to user
 			System.exit(0);									// exiting the system
 		}
 	}

@@ -18,11 +18,11 @@ public class SignUpModel implements java.io.Serializable {
 	private String email;  
 	
 	
-	@Size(min=5)
+	@Size(min=5,max=30)
 	private String password ;
 	
 	
-	@NotEmpty
+	@Size(min=3,max=30)
 	private String address;
 	
 	

@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DocumentationController {
 	
+	
+	@RequestMapping("/docx")
+	public String docx()
+	{
+		return "docx";
+	}
 	@RequestMapping("/contents")
 	public String contents()
 	{

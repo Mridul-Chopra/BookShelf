@@ -1,6 +1,7 @@
 package net.paxcel.bookshelf.dao;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,9 @@ public class GetBooksDAOImpl implements GetBooksDAO{
 
 	@Autowired Logger log;  // getting logger
 	@Autowired QueryHelper sql; // getting custom query helper
-	
+	private String query;
 	@Override
+	@Deprecated
 	public ResultSet getBooks() throws Exception {
 		
 		try
@@ -19,7 +21,7 @@ public class GetBooksDAOImpl implements GetBooksDAO{
 		ResultSet result;
 		
 		// query to be executed to get data
-		String query = "SELECT BOOKS.BOOK_NAME , GENRE , PRICE , AUTHOR_NAME FROM BOOKS INNER JOIN BOOKS_AUTHORS WHERE BOOKS.BOOK_NAME = BOOKS_AUTHORS.BOOK_NAME ORDER BY BOOKS.BOOK_NAME ;";
+		String query = "SELECT BOOKS.BOOK_NAME ,BOOKS.BOOK_ID, GENRE , PRICE , AUTHOR_ID FROM BOOKS INNER JOIN BOOKS_AUTHORS_MAP WHERE BOOKS.BOOK_ID = BOOKS_AUTHORS_MAP.BOOK_ID ORDER BY BOOKS.BOOK_NAME ;";
 		sql.setQuery=(Void)->
 							{
 								return Void;
@@ -44,7 +46,7 @@ public class GetBooksDAOImpl implements GetBooksDAO{
 		{
 			ResultSet result;
 			// setting the query to get data
-			String query = "SELECT BOOKS.BOOK_NAME , GENRE , PRICE , AUTHOR_NAME FROM BOOKS INNER JOIN BOOKS_AUTHORS WHERE BOOKS.BOOK_NAME = BOOKS_AUTHORS.BOOK_NAME  ";
+			String query = "SELECT BOOKS.BOOK_NAME ,BOOKS.BOOK_ID ,GENRE , PRICE , AUTHORS.AUTHOR_NAME FROM BOOKS INNER JOIN BOOKS_AUTHORS_MAP INNER JOIN AUTHORS WHERE BOOKS.BOOK_ID = BOOKS_AUTHORS_MAP.BOOK_ID AND BOOKS_AUTHORS_MAP.AUTHOR_ID = AUTHORS.AUTHOR_ID";
 		
 	 		// modifying query based on filters
 			if( author!=null & genre!=null)
@@ -132,6 +134,49 @@ public class GetBooksDAOImpl implements GetBooksDAO{
 			log.error(this.getClass()+"-->> "+e);
 			throw new Exception();
 		}
+	}
+
+	@Override
+	public ResultSet getBooks(List<String> authors, List<String> genres, int page) throws Exception {
+		try
+		{
+			ResultSet result;
+			 query = "SELECT BOOKS.BOOK_NAME ,BOOKS.BOOK_ID ,GENRE , PRICE , AUTHORS.AUTHOR_NAME FROM BOOKS INNER JOIN BOOKS_AUTHORS_MAP INNER JOIN AUTHORS WHERE BOOKS.BOOK_ID = BOOKS_AUTHORS_MAP.BOOK_ID AND BOOKS_AUTHORS_MAP.AUTHOR_ID = AUTHORS.AUTHOR_ID";
+			
+			 if(authors.size()<=0 | genres.size() <=0)
+			 {
+				 return null;
+			 }
+			if(!authors.get(0).equals("all"))
+			{
+				query+=" AND AUTHOR_NAME IN(";
+				for(int i =0;i<=authors.size()-2;i++)
+				{
+					query+="'"+authors.get(i)+"',";
+				}
+				query+="'"+authors.get(authors.size()-1)+"')";
+				log.info(query);
+			}
+			if(!genres.get(0).equals("all"))
+			{
+				query+=" AND GENRE IN(";
+				for(int i =0;i<=genres.size()-2;i++)
+				{
+					query+="'"+genres.get(i)+"',";
+				}
+				query+="'"+genres.get(genres.size()-1)+"')";
+				log.info(query);
+			}
+			
+			sql.setQuery=(Void)->{return Void;};
+			return sql.getData(query);
+		}
+		catch(Exception e)
+		{
+			log.error(this.getClass()+"-->> "+e);
+			throw new Exception();
+		}
+		
 	}
 	
 	

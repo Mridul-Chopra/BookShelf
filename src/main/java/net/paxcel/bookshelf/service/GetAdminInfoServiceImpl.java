@@ -82,7 +82,7 @@ public class GetAdminInfoServiceImpl implements GetAdminInfoService {
 						*/
 	
 						String bookName = rs.getString("BOOK_NAME");
-						int amount = rs.getInt("amount");
+						int amount = rs.getInt("QUANTITY");
 						String date = rs.getDate("DATE_OF_PURCHASE").toString();;
 						
 						purchase = new BooksPurchaseModel();
@@ -115,9 +115,9 @@ public class GetAdminInfoServiceImpl implements GetAdminInfoService {
 						*/
 				
 						int orderID = rs.getInt("ORDER_ID");
-						String email = rs.getString("CUSTOMER_ID");
+						String email = rs.getString("USERNAME");
 						String bookName = rs.getString("BOOK_NAME");
-						int amount = rs.getInt("AMOUNT");
+						int amount = rs.getInt("QUANTITY");
 						String date = rs.getDate("DATE_OF_ORDER").toString();
 						
 						order = new OrdersModel();
