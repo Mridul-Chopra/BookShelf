@@ -20,16 +20,15 @@ public class GetUserIdServiceImpl implements GetUserIdService
 		
 		try
 		{
-			ResultSet result = user.getId(username);
-		
+			ResultSet result = user.getId(username); //calling user id
 			if(result.next())
 			{
-				int id = result.getInt("USER_ID");
+				int id = result.getInt("USER_ID");   // getting user id 
 				return id;
 			}
 			else
 			{
-				return -1;
+				return -1;  // if not found return -1
 			}
 		}
 		catch(Exception e)

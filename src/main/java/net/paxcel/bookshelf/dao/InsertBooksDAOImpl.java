@@ -194,17 +194,10 @@ public class InsertBooksDAOImpl implements InsertBooksDAO {
 											{
 												try 
 												{
-													for(int i=1;i<=authors.size()*2;i++)
+													for(int i=1;i<=authors.size();i++)
 													{
-														if(i%2!=0)
-														{
 															sql.st.setInt(i,bookId);
-														}
-														else
-														{
-														
-															sql.st.setInt(i,authorIds.get(i/2 -1));
-														}
+															sql.st.setInt(2*i,authorIds.get(i -1));
 													}
 												}
 												catch(Exception e)

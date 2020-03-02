@@ -12,11 +12,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../../resources/styles/order.css">
-  <script src="../../resources/scripts/order-events.js"></script>
-  <script src="../../resources/scripts/order-ajax.js"></script>
-  <script src="../../resources/scripts/order-validations.js"></script>
-  <script src="../../resources/scripts/order-vars.js"></script>
+  <link rel="stylesheet" type="text/css" href="../resources/styles/order.css">
+  <script src="../resources/scripts/order-events.js"></script>
+  <script src="../resources/scripts/order-ajax.js"></script>
+  <script src="../resources/scripts/order-validations.js"></script>
+  <script src="../resources/scripts/order-vars.js"></script>
 
 
 <title>Insert title here</title>
@@ -106,7 +106,7 @@
 
 				<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-					<input class="form-control" id="myInput" type="text" placeholder="Search something in table ..">
+					<input class="form-control" id="myInput" type="text" placeholder="Search for a book ..">
 				</div>
 			</div>
 			
@@ -121,13 +121,13 @@
 	<div class = "row row-3">
 		<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 "></div>
 		<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 table responsive">
-			<table class="table table-hover table-bordered all">
+			<table class="table table-hover table-bordered all" id="myTable">
 				<thead class="thead-dark">	
 					<tr>
 						<th>Book Name</th>
 						<th>Authors</th>
 						<th>Genre</th>
-						<th>Price</th>
+						<th id="sort" title="Click to Sort">Price</th>
 						<th></th>
 					</tr>
 				</thead>

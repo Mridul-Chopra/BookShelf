@@ -1,6 +1,7 @@
 package net.paxcel.bookshelf.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -177,6 +178,27 @@ public class GetBooksDAOImpl implements GetBooksDAO{
 			throw new Exception();
 		}
 		
+	}
+
+	@Override
+	public ResultSet getBooks(String bookName) throws Exception {
+		
+		ResultSet result;
+		query = "SELECT BOOKS.BOOK_NAME ,BOOKS.BOOK_ID ,GENRE , PRICE , AUTHORS.AUTHOR_NAME FROM BOOKS INNER JOIN BOOKS_AUTHORS_MAP INNER JOIN AUTHORS WHERE BOOKS.BOOK_ID = BOOKS_AUTHORS_MAP.BOOK_ID AND BOOKS_AUTHORS_MAP.AUTHOR_ID = AUTHORS.AUTHOR_ID and BOOKS.BOOK_NAME LIKE ? ";
+		
+		sql.setQuery=(Void)->
+							{
+								try
+								{
+									sql.st.setString(1,bookName+"%");
+								} 
+								catch (SQLException e) 
+								{
+									log.error(this.getClass()+"-->> "+e);
+								}
+								return Void;
+							};
+		return sql.getData(query);
 	}
 	
 	

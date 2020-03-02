@@ -9,5 +9,5 @@ import net.paxcel.bookshelf.model.BooksResponse;
 public interface GetBooksService {
 	
 	public BooksResponse getBooks(String data ) ; // get books with filters
-
+	public BooksResponse getBooksbyName(String bookName);
 }

@@ -18,4 +18,5 @@ public interface GetBooksDAO {
 	public ResultSet getBooks(String author ,String genre) throws Exception; // function to get all books and books with filters
 	
 	public ResultSet getBooks(List<String>authors,List<String>genres,int page)throws Exception;
+	public ResultSet getBooks(String bookName)throws Exception;
 }

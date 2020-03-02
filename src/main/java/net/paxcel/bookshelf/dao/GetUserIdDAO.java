@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GetUserIdDAO {
 
-	public ResultSet getId(String username) throws Exception;
+	public ResultSet getId(String username) throws Exception;// get user id
 }

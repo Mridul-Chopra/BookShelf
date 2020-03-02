@@ -12,44 +12,57 @@
 				 }
 			 );
 	 
+	 /*
+	 ------------------------Function to display data in table-------------------
+	 */
 	 function print(data)
 		{
-		 	let txt = data.booksList;
-		 	 totalPages =data.totalPages;
+		 	let txt = data.booksList;  // getting books list
+		 	 totalPages =data.totalPages;  // getting total pages
 		 	
-			$(".all tbody tr").remove();
+			$(".all tbody tr").remove();  // clearing table
 			
-			if(data.length==0)
+			if(data.length==0)  // if no data
 			{
-				$(".message").text("Sorry we did not find anything..  :(");
+				$(".message").text("Sorry we did not find anything..  :("); // display feedback
 				return;
 			}
 			else
 			{
 				$(".message").text("");
 			}
+			
+			/*
+			 * Display data by iterting through it
+			*/
 			for(i=0;i<txt.length;i++)
 			{
-				let booksName = "<td name='"+txt[i].id+"'>"+txt[i].bookName+"</td>";
-				let genre = "<td>"+txt[i].genre+"</td>";
+				let booksName = "<td name='"+txt[i].id+"'>"+txt[i].bookName+"</td>";  // get bookName
+				let genre = "<td>"+txt[i].genre+"</td>";							// get genre
 				
-				let authorsList = "<td> <ul>";
+				let authorsList = "<td> <ul>";					
 				let authors =txt[i].authors
 				for(j=0;j<authors.length;j++)
 				{
-					authorsList += "<li>"+authors[j]+"</li>";
+					authorsList += "<li>"+authors[j]+"</li>";		// adding authors to list
 				}
 				authorsList+="</td>";
-				let price ="<td> Rs. "+txt[i].price+"</td>";
-				let button ="<td class='cart-button'><button class='add-to-cart'>Add to 'Cart'</button></td>"
-				let row="<tr class='.books-row'>"+booksName+authorsList+genre+price+button+"</tr>"
-				$(".all").append(row);
+				let price ="<td> Rs. "+txt[i].price+"</td>";		// getting price
+				let button ="<td class='cart-button'><button class='add-to-cart'>Add to 'Cart'</button></td>" // adding button
+				let row="<tr class='.books-row'>"+booksName+authorsList+genre+price+button+"</tr>"	
+				$(".all").append(row);		// finnaly displaying
 			}
 		}
 	 
+	 /*
+	 ------------------------Function to display data in table-------------------
+	 									(ENDS)
+	 */		
 	 
-		 
-		 
+	 
+	/*
+	 *  ----------------------------Function to apply filters by ajax--------------------------------- 
+	*/	 
 			 function filter(x)
 			  {
 				 getBooks(
@@ -61,22 +74,11 @@
 					 );
 					
 			  }
-			 
-			 
-/*			function getBooks(author , genre , email,page,myContextPath)
-			{
-				
-			    $.ajax(
-			    		{
-			    			url: myContextPath+"/order/"+ email + "/" + page + "?author=" + author + "&genre=" + genre, 
-			    			type: "POST",
-			    			success: function(result)
-			    						{
-			    							print(result);
-			    						}
-			    		});
-			}
-*/
+
+	/*
+	 * ------------------------ Function to apply filters by ajax------------------------------ 
+	 *  									(ENDS)
+	*/	 	 
 			 
 			function getBooks(data)
 			{
@@ -236,75 +238,120 @@
 -----------------------------APPLY FILTER ON AUTHORS AND GENRE SELECTED---------------------------
 		 									(ENDS)
  */ 
-
+			 
+			 
+/*
+ * -------------------------------- Pagination Buttons Functionality------------------------------------------		 
+*/
 			 
 			 $("#next").click(function()
 			{
-				 increase_page();
-				 filter();
+				 increase_page();  // increase page number
+				 filter();			// apply selected filter
 			});
 			 
 			 $("#previous").click(function()
 			{
-				 decrease_page();
-				 filter();
+				 decrease_page(); // decrease page number
+				 filter(); 			// apply filter
 			});
 			
 			$(".page-number").click(function()
 			{
-				let pageNumber = $(this).text();
-				if(isNaN(pageNumber))
+				let pageNumber = $(this).text();  // ge page Number
+				if(isNaN(pageNumber))				// if not a number do nothing
 				return;
 				
-				page = parseInt(pageNumber);
-				filter();
+				page = parseInt(pageNumber);		// set pageNumber
+				filter();							// apply filter
 			});
-		 
+/*
+ * ------------------------- Pagination Buttons Functionality------------------------------------------------
+ *  									(ENDS)			 
+*/		 
+		
 			
-
-			  
+			
+/*
+ *  --------------------------Set Page numbers in the pager----------------------------			
+*/		
 		function setPages(pageNumber)
 		{
-			let page1 = $("#previous").next();
-			 let page2 = page1.next();
-			 let page3 = page2.next();
+			let page1 = $("#previous").next();  // get where to display page 1
+			 let page2 = page1.next();			// get where to display page 2
+			 let page3 = page2.next();			// get where to display page 3
 			 
-			if(((pageNumber+2)/3)%1 ==0)
+			if(((pageNumber+2)/3)%1 ==0)		// if page 1
 			{
 				 
+				// setting css
 				 page1.css("border","0.2em solid red");
 				 page2.css("border","none");
 				 page3.css("border","none");
 				 
-				 page1.children().text(pageNumber);
+				 page1.children().text(pageNumber);// setting page number
 				 
-				 if(pageNumber+1<=totalPages)
+				 if(pageNumber+1<=totalPages)     // if data present for page then set
 					 page2.children().text(pageNumber+1);
 				 else
 					 page2.children().text("..");
 				 
-				 if(pageNumber+2 <= totalPages)
+				 if(pageNumber+2 <= totalPages)   // if data present for page then set
 					 page3.children().text(pageNumber+2);
 				 else
 					 page3.children().text("..");
-			}
-			else if((pageNumber/3)%1 ==0)
+			} 
+			else if((pageNumber/3)%1 ==0)  // if page = 3
 			{
+				
+				// setting page numbers
 				page1.children().text(pageNumber-2);
 				page2.children().text(pageNumber-1);
 				page3.children().text(pageNumber);
 				
+				
+				// setting css
 				page3.css("border","0.2em solid red");
 				page1.css("border","none");
 				page2.css("border","none");
 			}
-			else
+			else  // if page == 2
 			{
+				// setting css
 				page2.css("border","0.2em solid red");
 				 page1.css("border","none");
 				 page3.css("border","none");
 			}
 		}
+		
+/*
+--------------------------Setting page number in page number------------------------------
+										(Ends)
+*/		
+		
+/*
+ *  Making Ajax Call on Search bar		
+*/		
+		$( "#myInput" ).keyup(function() {
+			
+			let bookName = $("#myInput").val();  // getting entered data
+			$.ajax(
+		    		{
+		    			url: "/bookshelf/getBooksbyName?bookName="+bookName ,  // sending request
+		    			type: "POST",											// post request
+		    			success: function(result)
+		    						{
+		    							console.log(result);
+		    							print(result);		
+		    							setPages(page);
+		    						}
+		    		});
+			
+			});
+/*
+ *  Making Ajax Call on Search bar		
+ *  		(ENDS )
+*/
 });
 		 
 		 

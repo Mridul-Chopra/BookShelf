@@ -4,7 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import net.paxcel.bookshelf.utils.Hasher;
 
 
 /*
@@ -25,8 +29,9 @@ public class SignUpModel implements java.io.Serializable {
 	@Size(min=3,max=30)
 	private String address;
 	
-	
-	
+	@Autowired private Logger log;
+	private String hashedPassword;
+	//@Autowired private Hasher hash;
 	/*
 	 *  Getters an Setters
 	*/
@@ -40,10 +45,18 @@ public class SignUpModel implements java.io.Serializable {
 	}
 
 	public String getPassword() {
-		return password;
+		return hashedPassword;
 	}
 
 	public void setPassword(String password) {
+		try {
+		hashedPassword =Hasher.getHash(password);
+		this.password=password;
+		}
+		catch(Exception e)
+		{
+			log.error(e);
+		}
 		this.password = password;
 	}
 

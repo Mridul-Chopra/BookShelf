@@ -20,12 +20,19 @@ public class PlaceOrderController {
 	@Autowired Logger log;
 	@Autowired OrderService order_;
 
+	/**
+	 * @param order  : json of order details
+	 * @param request : to get id of loged in user
+	 * @return
+	 */
 	@RequestMapping(value="/orderDetails" , method=RequestMethod.POST)
 	public @ResponseBody String my( @RequestBody String order , HttpServletRequest request)
 	{
 		int id = (Integer)request.getSession().getAttribute("id");
 		
-		boolean status = order_.addOrder(order , id);
+		boolean status = order_.addOrder(order , id);  // get status of order
+		
+		// respond with appropriate feedback
 			if(status)
 			{
 				return "Order placed successfully.."; 

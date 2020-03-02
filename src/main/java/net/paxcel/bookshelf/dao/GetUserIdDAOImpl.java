@@ -20,14 +20,14 @@ public class GetUserIdDAOImpl implements GetUserIdDAO {
 								{
 									try 
 									{
-										sql.st.setString(1, username);
+										sql.st.setString(1, username); //seting query
 									} catch (SQLException e) 
 									{
 										log.error(e);
 									}
 									return Void;
 								};
-		ResultSet result = sql.getData(query);
+		ResultSet result = sql.getData(query); // executing query
 		return result;
 	}
 

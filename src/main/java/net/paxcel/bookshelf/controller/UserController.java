@@ -26,22 +26,23 @@ public class UserController {
 		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  if (!(auth instanceof AnonymousAuthenticationToken))
 		  {
-			UserDetails userDetail = (UserDetails) auth.getPrincipal();	
-			email= userDetail.getUsername();
-			
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();	  // get user details
+			email= userDetail.getUsername();		// get username
 			
 			try 
 			{
-			int id = user.getId(email);
-			 request.getSession().setAttribute("id", id);
+			int id = user.getId(email);  // get id from db
+			 request.getSession().setAttribute("id", id); // put in session
 			} 
 			catch (Exception e) 
 			{
 				e.printStackTrace();
 			}
 		  }
+		  
+		  // redirect to required page
 		 if(request.isUserInRole("ROLE_USER"))
-			 return "redirect:order/"+email+"/1";
+			 return "redirect:order/"+email;
 		 else 
 			 return "redirect:admin";
 	}

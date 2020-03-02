@@ -3,6 +3,7 @@ package net.paxcel.bookshelf.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import net.paxcel.bookshelf.dao.InsertBooksDAO;
@@ -11,6 +12,7 @@ import net.paxcel.bookshelf.dao.InsertBooksDAO;
 public class InsertBooksServicelmpl implements InsertBooksService{
 
 	@Autowired
+	@Qualifier("insertBooks2")
 	InsertBooksDAO insert; // dao class to insert
 	
 	@Override

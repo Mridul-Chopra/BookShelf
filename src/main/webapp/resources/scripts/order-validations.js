@@ -1,6 +1,8 @@
  $(document).ready(function()
 {
-	 
+	 /*
+	  *  Validations for quantity
+	 */
 	 $(".orders").on('keydown keyup' , '.quantity' , function(e)
 	{
 		  
@@ -17,7 +19,10 @@
 		    }
 	  });
 	 
-	  
+	 
+	 /*
+	  *  Validations for quantity (Empty)
+	 */
 	$(".orders").on('focusout' , '.quantity' , function(e)
 	{
 		  

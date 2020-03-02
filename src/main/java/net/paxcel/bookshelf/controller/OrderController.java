@@ -31,11 +31,10 @@ public class OrderController {
 	@Autowired
 	Logger log;		// getting logger
 	
-	  @RequestMapping(value = "/order/{email}/{page}" , method = RequestMethod.GET) 
+	  @RequestMapping(value = "/order/{email}" , method = RequestMethod.GET) 
 	  public String setAuthorsAndGenres(
 	  
 	@PathVariable("email") String email, //getting email from url
-	@PathVariable("page") int page , //page number for pagination  
 	   Model model ) 
 	  {
 		  
@@ -43,9 +42,8 @@ public class OrderController {
 	*  adding email and page to model 
 	 */
 	 model.addAttribute("email",email); 
-	 model.addAttribute("page",page);
-	 
-	  List<String> authorsList = authors.getAuthors();  // getting all authors
+
+	 List<String> authorsList = authors.getAuthors();  // getting all authors
 	  List<String> genresList =genres.getGenres(); // getting all genres
 	  
 	  
@@ -64,11 +62,27 @@ public class OrderController {
 	  return "order";  // return view
 	}
 	 
+	/**
+	 * @param data  : gets json from client
+	 * @return ::  json of books details to client
+	 */
 	@RequestMapping(value = "/getBooks", method = RequestMethod.POST)
-	public @ResponseBody BooksResponse filter(Model model, @RequestBody String data) 
+	public @ResponseBody BooksResponse filter( @RequestBody String data) 
 	{	
 			
-		  return books.getBooks(data); 
+		  return books.getBooks(data);  // gettting books
+	}
+	
+	
+	/**
+	 * @param bookName  : gets bookName from client in url params
+	 * @return ::  json of books details to client
+	 */
+	@RequestMapping(value="/getBooksbyName", method = RequestMethod.POST)
+	public @ResponseBody BooksResponse getBook( @RequestParam("bookName") String bookName) 
+	{
+		return books.getBooksbyName(bookName);
+		
 	}
 	
 }
