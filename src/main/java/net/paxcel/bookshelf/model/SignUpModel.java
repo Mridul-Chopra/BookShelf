@@ -49,7 +49,8 @@ public class SignUpModel implements java.io.Serializable {
 	}
 
 	public void setPassword(String password) {
-		try {
+		try 
+		{
 		hashedPassword =Hasher.getHash(password);
 		this.password=password;
 		}

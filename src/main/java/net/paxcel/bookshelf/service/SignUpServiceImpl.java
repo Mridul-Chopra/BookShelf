@@ -23,7 +23,7 @@ RegisterUserDAO signup; // dao interface for signup
 		// giving message based upon status
 		if(status == 1) // successful
 		{
-			return "Sign Up Successful. Please login to continue.";
+			return "Sign up Successful. Login to continue";
 		}
 		else if(status ==-1)  // duplicate record
 		{
