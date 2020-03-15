@@ -54,7 +54,7 @@ import net.paxcel.bookshelf.service.SignUpService;
 	  "$2a$10$OeZiY337azdMIf570uNTHOkXArw9fi7AJtxM1HQeVPb8az2dEK91y"; String
 	  address = "qwerty";
 	  
-	  when(signup.signup(email, password, address)).thenReturn(new
+	  when(signup.signup(email, null, address)).thenReturn(new
 	  String("mocked res")); 
 	  System.out.println(signup.signup(email, password,address));
 	  
