@@ -51,7 +51,7 @@ public class SignUpController {
 
 		System.out.print(password);
 		
-		String message = signup.signup(email,password,address); // signing up user and getting status message
+		String message = signup.signup(email,"123456",address); // signing up user and getting status message
 		status.addAttribute("message", message); // displaying messaging from user
 		return "signup";
 	}
